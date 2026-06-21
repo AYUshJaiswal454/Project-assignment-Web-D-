@@ -1,0 +1,324 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Course Management</title>
+
+    <style>
+
+
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    padding:30px;
+}
+
+.container{
+    width:95%;
+    margin:auto;
+}
+
+.navbar{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#333;
+}
+
+.add-btn{
+    background:#28a745;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
+    text-decoration:none;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card h2{
+    color:#764ba2;
+    margin-bottom:10px;
+}
+
+.search-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.search-box input{
+    width:300px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.search-box button{
+    padding:10px 15px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:8px;
+}
+
+.table-container{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#343a40;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f8f9fa;
+}
+
+tr:hover{
+    background:#e9ecef;
+}
+
+.edit-btn{
+    background:#ffc107;
+    color:black;
+    padding:8px 12px;
+    border-radius:5px;
+    text-decoration:none;
+}
+
+.delete-btn{
+    background:#dc3545;
+    color:white;
+    padding:8px 12px;
+    border-radius:5px;
+    text-decoration:none;
+}
+</style>
+
+        <!-- /* *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#333;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        a[href="/add"]{
+            background:#28a745;
+            color:white;
+            padding:10px 18px;
+            border-radius:5px;
+            font-weight:bold;
+        }
+
+        form{
+            margin-top:20px;
+            margin-bottom:20px;
+        }
+
+        input[type="text"]{
+            width:250px;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            padding:10px 15px;
+            background:#007bff;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#0056b3;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            box-shadow:0px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        th{
+            background:#343a40;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:12px;
+            text-align:center;
+        }
+
+        tr:nth-child(even){
+            background:#f8f9fa;
+        }
+
+        tr:hover{
+            background:#e9ecef;
+        }
+
+        .edit-btn{
+            background:#ffc107;
+            color:black;
+            padding:6px 12px;
+            border-radius:4px;
+            margin-right:5px;
+        }
+
+        .delete-btn{
+            background:#dc3545;
+            color:white;
+            padding:6px 12px;
+            border-radius:4px;
+        }
+
+        .edit-btn:hover{
+            background:#e0a800;
+        }
+
+        .delete-btn:hover{
+            background:#c82333;
+        } */ -->
+
+    
+
+</head>
+
+
+
+
+
+<body>
+
+<h1>Course Management System</h1>
+
+<a href="/add">Add Course</a>
+
+<br><br>
+
+<form action="/search">
+
+<input
+type="text"
+name="search"
+placeholder="Search Course">
+
+<button>Search</button>
+
+</form>
+
+<br>
+
+<table border="1">
+
+<tr>
+<th>Course</th>
+<th>Trainer</th>
+<th>Duration</th>
+<th>Fees</th>
+<th>Mode</th>
+<th>Action</th>
+</tr>
+
+<% courses.forEach(course=>{ %>
+
+<tr>
+
+<td><%= course.courseName %></td>
+
+<td><%= course.trainerName %></td>
+
+<td><%= course.duration %></td>
+
+<td><%= course.fees %></td>
+
+<td><%= course.mode %></td>
+
+<td>
+
+<a href="/edit/<%= course._id %>">Edit</a>
+
+|
+
+<a href="/delete/<%= course._id %>">Delete</a>
+</td>
+
+</tr>
+
+<% }) %>
+
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
